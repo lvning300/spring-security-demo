@@ -1,0 +1,39 @@
+server:
+  port: 8089
+
+# Logger Config
+logging:
+  level:
+    root: info
+    com.example.security.demo.dao: debug
+  pattern:
+    console: '%p%m%n'
+
+# Mybatis-plus Config
+mybatis-plus:
+  mapper-locations: classpath*:mapper/*.xml
+  type-aliases-package:  com.example.security.demo.entity
+  configuration:
+    map-underscore-to-camel-case: true
+  global-config:
+    banner: false
+    field-strategy: 2
+
+---
+spring:
+  profiles: local
+  application:
+    name: spring-security-demo
+  # DataSource Config
+  datasource:
+    hikari:
+      idle-timeout: 200000
+      maximum-pool-size: 10
+      minimum-idle: 30
+      connection-timeout: 600000
+      connection-test-query: SELECT 1
+      pool-name: HikariPool
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/oauth2?useSSL=false&useUnicode=true&characterEncoding=utf-8&verifyServerCertificate=false&allowMultiQueries=true
+    username: root
+    password: 123456

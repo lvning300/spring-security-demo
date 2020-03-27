@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.security.demo.dao.OauthUserMapper">
+    <select id="loadUserByUsername" parameterType="String" resultType="com.example.security.demo.entity.OauthUser">
+        select  * from oauth_user where username=#{username}
+    </select>
+    <select id="getUserRolesByUid" parameterType="Integer" resultType="com.example.security.demo.entity.OauthRole">
+        select * from oauth_role r,oauth_user_role ur where r.id=ur.rid and ur.uid=#{id}
+    </select>
+</mapper>
